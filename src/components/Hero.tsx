@@ -1,33 +1,21 @@
 "use client";
 
 import Image from "next/image";
-import { motion, useReducedMotion } from "framer-motion";
+import { motion, useReducedMotion, easeInOut } from "framer-motion";
 import { useMemo } from "react";
 
 export default function Hero() {
   const reduce = useReducedMotion();
 
-  const imgVariant = useMemo(
-    () => ({
-      hidden: { opacity: 0, x: 80, scale: 1.03 },
-      show: { opacity: 1, x: 0, scale: 1, transition: { duration: 1.1, ease: [0.22, 1, 0.36, 1] } },
-    }),
-    []
-  );
-  const headingVariant = useMemo(
-    () => ({
-      hidden: { opacity: 0, y: 40, filter: "blur(6px)" },
-      show: { opacity: 1, y: 0, filter: "blur(0px)", transition: { delay: 0.45, duration: 0.8 } },
-    }),
-    []
-  );
-  const paragraphVariant = useMemo(
-    () => ({
-      hidden: { opacity: 0, x: -20 },
-      show: { opacity: 1, x: 0, transition: { delay: 0.7, duration: 0.7 } },
-    }),
-    []
-  );
+  const imgVariant = {
+  hidden: { opacity: 0, x: 80, scale: 1.03 },
+  show: {
+    opacity: 1,
+    x: 0,
+    scale: 1,
+    transition: { duration: 1.1, ease: easeInOut },
+  },
+};
 
   const motionProps = reduce ? { initial: "show", animate: "show" } : { initial: "hidden", animate: "show" };
 
